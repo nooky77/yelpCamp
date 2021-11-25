@@ -1,0 +1,49 @@
+<%- layout("/layouts/boilerplate") %> 
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds" method="post" novalidate class="validated-form">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title: </label>
+                <input type="text" class="form-control" id="title" name="title" required>
+                <div class="invalid-feedback">
+                    Please enter a title.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label"">Location: </label>
+                <input type="text" class="form-control" id="location" name="location" required>
+                <div class="invalid-feedback">
+                    Please enter a location.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label"">Image URL: </label>
+                <input type="text" class="form-control" id="image" name="image" required>
+                <div class="invalid-feedback">
+                    Please enter a url.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label"">Price:</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" required>
+                    <div class="invalid-feedback">
+                        Please enter a price.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="text-description"">Description: </label>
+                <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+                <div class="invalid-feedback">
+                    Please enter a description.
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Add Campground</button>
+            </div>
+        </form>
+    </div>
+</div>
