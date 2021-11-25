@@ -17,7 +17,12 @@ const campground_details = catchAsync(async(req, res) => {
         req.flash("error", "Campground not found!");
         return res.redirect("/campgrounds")
     }
-    const camp = await Campground.findById(id).populate("reviews").populate("author");
+    const camp = await Campground.findById(id).populate({
+        path: "reviews",
+        populate: {
+            path: "author"
+        }
+        }).populate("author");
     res.render("./campgrounds/details", { camp })
 })
 

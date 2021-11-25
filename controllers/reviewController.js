@@ -7,6 +7,7 @@ const review_create_post = catchAsync(async(req, res) => {
     const { campId } = req.params;
     const camp = await Campground.findById(campId);
     const review = new Review(req.body);
+    review.author = req.user._id;
     await review.save();
     camp.reviews.push(review);
     await camp.save();

@@ -6,7 +6,7 @@ const isAuthor = require("../middleware/isAuthor");
 const { validateCampground } = require("../middleware/validateSchema")
 
 router.get("/", campgroundController.campground_index);
-router.post("/", isLoggedIn, isAuthor, validateCampground, campgroundController.campground_create_post);
+router.post("/", isLoggedIn, validateCampground, campgroundController.campground_create_post);
 router.get("/new", isLoggedIn, campgroundController.campground_create_get);
 router.get("/:id/edit", isLoggedIn, isAuthor, campgroundController.campground_update_get);
 router.get("/:id", campgroundController.campground_details);
