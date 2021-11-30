@@ -1,3 +1,8 @@
+// Check if project is not in production 
+if(process.env.NODE_ENV !== "production"){
+    require("dotenv").config();
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -16,8 +21,7 @@ const ExpressError = require("./helpers/ExpressError");
 const app = express();
 
 // Connect to db and lunch server
-const dbURI = "mongodb+srv://bibi:1HATUs89zu8GN8mw@clustertuto.dwp4i.mongodb.net/yelpCamp?retryWrites=true&w=majority"
-mongoose.connect(dbURI)
+mongoose.connect(process.env.MONGO_DB_URI)
     .then(() => app.listen("3000", () => console.log("Server and DB connected.")))
     .catch((err) => console.log(err));
 

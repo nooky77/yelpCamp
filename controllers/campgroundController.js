@@ -34,6 +34,7 @@ const campground_create_get = (req, res) => {
 // Post route of create campground
 const campground_create_post = catchAsync(async(req, res) => {
     const camp = new Campground(req.body);
+    camp.images = req.files.map(file => ({url: file.path, filename: file.filename}));
     camp.author = req.user._id;
     await camp.save();
     req.flash("success", "You successfully created a campground!");
