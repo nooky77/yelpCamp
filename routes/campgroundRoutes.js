@@ -19,7 +19,7 @@ router.get("/:id/edit", isLoggedIn, isAuthor, campgroundController.campground_up
 
 router.route("/:id")
     .get(campgroundController.campground_details)
-    .put(isLoggedIn, isAuthor, validateCampground, campgroundController.campground_update_post)
+    .put(isLoggedIn, isAuthor, upload.array("image"), validateCampground, campgroundController.campground_update_post)
     .delete(isLoggedIn, isAuthor, campgroundController.campground_delete);
 
 module.exports = router;

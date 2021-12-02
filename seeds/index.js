@@ -21,15 +21,24 @@ const deleteCampground = async() => {
         const camp = new Campground({
             title: `${descriptors[sample(descriptors)]}, ${places[sample(places)]}`,     
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            image: "https://source.unsplash.com/collection/483251",
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aperiam, eligendi porro nam odio laborum distinctio molestiae voluptate eveniet architecto officia cupiditate, amet vitae iste nisi. Ipsa reprehenderit eius commodi!",
             price,
-            author: "619fa8fa8ef13f9ef55ab9c1"
+            author: "619fa8fa8ef13f9ef55ab9c1",
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/zaz1701/image/upload/v1638285768/YelpCamp/btooyzkkyovahnjn3oxv.jpg',
+                    filename: 'YelpCamp/btooyzkkyovahnjn3oxv'
+                },
+                {
+                  url: 'https://res.cloudinary.com/zaz1701/image/upload/v1638285768/YelpCamp/dm3lmkeepouezaxps7oi.jpg',
+                  filename: 'YelpCamp/dm3lmkeepouezaxps7oi'
+                }
+              ]
         })
         await camp.save();
     }
 }
 
-// deleteCampground().then(() => mongoose.connection.close());
+deleteCampground().then(() => mongoose.connection.close());
 
 

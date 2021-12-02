@@ -2,7 +2,7 @@
 const Campground = require("../models/campground");
 const catchAsync = require("../helpers/catchAsync");
 const ObjectID = require('mongoose').Types.ObjectId;
-
+const { cloudinary } = require("../cloudinary");
 
 // Get route of all campgrounds
 const campground_index = catchAsync(async(req, res) => {
@@ -56,14 +56,29 @@ const campground_update_get = catchAsync(async(req, res) => {
 const campground_update_post = catchAsync(async(req, res) => {
     const id = req.params.id;
     const camp = await Campground.findByIdAndUpdate(id, req.body);
+    const pictures = req.files.map((pic) => ({url: pic.path, filename: pic.filename}));
+    camp.images.push(...pictures);
+    if(req.body.deleteImages){
+        for(let filename of req.body.deleteImages){
+            await cloudinary.uploader.destroy(filename);
+        }
+        await camp.updateOne({ $pull: { images: { filename: {$in: req.body.deleteImages }}}});
+    }
+    await camp.save();
     req.flash("success", "You successfully updated the campground!")
     res.redirect(`/campgrounds/${camp.id}`);
 })
 
+
 // Delete route of campground
 const campground_delete = catchAsync(async(req, res) => {
     const id = req.params.id;
-    await Campground.findByIdAndDelete(id);
+    const camp = await Campground.findByIdAndDelete(id);
+    if (camp.images.length) {
+        for(let file of camp.images){
+            await cloudinary.uploader.destroy(file.filename);
+        }
+    }
     req.flash("success", "Successfully deleted campground!");
     res.redirect("/campgrounds")
 })
