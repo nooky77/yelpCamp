@@ -47,6 +47,7 @@
         </div>
     </div>
     <div class="col-6">
+        <div id='map' style='width: 450px; height: 300px;' class="mb-3"></div>
         <% if (currentUser) { %>
             <h2>Leave a Review</h2>
             <form action="/campgrounds/<%= camp.id %>/reviews" method="post" class="validated-form mb-3" novalidate>
@@ -94,3 +95,12 @@
         <% }) %>
     </div>
 </div>
+
+<script>
+    const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+    const campGps = <%- JSON.stringify(camp.geometry) %>;
+    const campTitle = <%- JSON.stringify(camp.title) %>;
+    const campLocation = <%- JSON.stringify(camp.location) %>;
+</script>
+
+<script src="/js/displayMap.js"></script>

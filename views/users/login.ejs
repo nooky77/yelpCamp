@@ -1,24 +1,47 @@
-<%- layout("/layouts/boilerplate") %> 
+<%- layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="/css/login.css" />
 
 <div class="row">
     <div class="col-6 offset-3">
-        <h1>Login</h1>
-        <form action="/login" method="post" class="validated-form" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
-                <div class="valid-feedback">
-                    Looks good!
+        <main class="form-signin">
+            <form
+                action="/login"
+                method="post"
+                class="validated-form"
+                novalidate
+            >
+                <img
+                    class="mb-4"
+                    id="logo"
+                    src="https://res.cloudinary.com/zaz1701/image/upload/v1638879208/YelpCamp/camp_f6nsgu.png"
+                    alt="logo YelpCamp"
+                />
+
+                <div class="form-floating">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                        name="username"
+                    />
+                    <label for="floatingInput">Username</label>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
-                <div class="valid-feedback">
-                    Looks good!
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="floatingPassword"
+                        placeholder="Password"
+                        name="password"
+                    />
+                    <label for="floatingPassword">Password</label>
                 </div>
-            </div>
-            <button class="btn btn-success">Login</button>
-        </form>
+
+                <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">
+                    Sign in
+                </button>
+            </form>
+        </main>
     </div>
 </div>

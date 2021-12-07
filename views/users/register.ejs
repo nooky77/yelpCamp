@@ -1,6 +1,4 @@
-<%- layout("/layouts/boilerplate") %> 
-
-<div class="row">
+<!-- <div class="row">
     <div class="col-6 offset-3">
         <h1>Register</h1>
         <form action="/register" method="post" class="validated-form" novalidate>
@@ -27,5 +25,62 @@
             </div>
             <button class="btn btn-success">Register</button>
         </form>
+    </div>
+</div> -->
+
+<%- layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="/css/login.css" />
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <main class="form-signin">
+            <form
+                action="/register"
+                method="post"
+                class="validated-form"
+                novalidate
+            >
+                <img
+                    class="mb-4"
+                    id="logo"
+                    src="https://res.cloudinary.com/zaz1701/image/upload/v1638879208/YelpCamp/camp_f6nsgu.png"
+                    alt="logo YelpCamp"
+                />
+                <div class="form-floating">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                        name="email"
+                    />
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                        name="username"
+                    />
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="floatingPassword"
+                        placeholder="Password"
+                        name="password"
+                    />
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">
+                    Register
+                </button>
+            </form>
+        </main>
     </div>
 </div>
