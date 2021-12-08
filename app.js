@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const path = require("path");
 const ejsMate = require("ejs-mate");
@@ -37,9 +38,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
 
 // Session express middleware
+const secret = process.env.SECRET;
+
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_DB_URI,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret,
+    },
+});
+
 const sessionConfig = {
+    store,
     name: "session",
-    secret: "kekleo",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
