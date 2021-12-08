@@ -24,11 +24,11 @@ const ExpressError = require("./helpers/ExpressError");
 const app = express();
 
 // Connect to db and lunch server
+const port = process.env.PORT || 3000;
+
 mongoose
     .connect(process.env.MONGO_DB_URI)
-    .then(() =>
-        app.listen("3000", () => console.log("Server and DB connected."))
-    )
+    .then(() => app.listen(port, () => console.log("Server and DB connected.")))
     .catch((err) => console.log(err));
 
 // Set view engine to ejs
