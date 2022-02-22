@@ -4,8 +4,7 @@ const Campground = require("../models/campground");
 const { descriptors, places } = require("./seedHelpers");
 
 // Connect to db and lunch server
-const dbURI =
-    "mongodb+srv://bibi:1HATUs89zu8GN8mw@clustertuto.dwp4i.mongodb.net/yelpCamp?retryWrites=true&w=majority";
+const dbURI = process.env.MONGO_DB_URI
 mongoose
     .connect(dbURI)
     .then(() => console.log("DB connected."))
